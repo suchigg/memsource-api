@@ -21,23 +21,11 @@ public class ProjectRestController {
 	private final ProjectService projectService;
 
 	@GetMapping
-	public ResponseEntity<Projects> findAll(@RequestParam(required = false) Integer pageNumber,
-												 @RequestParam(required = false) Integer pageSize) {
+	public ResponseEntity<Projects> findAll(Page page) {
 
-		Projects projects = this.projectService.findAll();
+		Projects projects = this.projectService.findAll(page);
 		return ResponseEntity.ok(projects);
 
 	}
-
-	private int getPageNumber(Integer page) {
-		page = page == null ? 0 : page;
-		return Math.max(page, 0);
-	}
-
-	private int getPageSize(Integer size) {
-		size = size == null || size <= 0 ? 10 : size;
-		return Math.min(size, 100);
-	}
-
 
 }

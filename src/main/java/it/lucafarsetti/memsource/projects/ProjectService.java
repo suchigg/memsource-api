@@ -16,8 +16,8 @@ public class ProjectService {
 		this.projectsMapper = projectsMapper;
 	}
 
-	public Projects findAll() {
-		RetrievedProjects retrievedProjects = memsourceClient.findAllProjects();
+	public Projects findAll(Page page) {
+		RetrievedProjects retrievedProjects = memsourceClient.findAllProjects(page);
 		return projectsMapper.from(retrievedProjects);
 	}
 

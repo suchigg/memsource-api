@@ -3,6 +3,7 @@ package it.lucafarsetti.memsource.client;
 import it.lucafarsetti.memsource.account.AccountConfiguration;
 import it.lucafarsetti.memsource.account.AccountService;
 import it.lucafarsetti.memsource.projects.AccountConfigurationNotFoundException;
+import it.lucafarsetti.memsource.projects.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,11 +27,24 @@ public class MemsourceClient {
 	}
 
 
-	public RetrievedProjects findAllProjects() {
+	public RetrievedProjects findAllProjects(Page page) {
 
-		var uri = URI.create("https://cloud.memsource.com/web/api2/v1/projects");
+		String stringUri = new StringBuilder()
+							 .append("https://cloud.memsource.com/web/api2/v1/projects")
+							 .append("?pageNumber=")
+							 .append(page.getPageNumber())
+							 .append("&pageSize=")
+							 .append(page.getPageSize()).toString();
+
+
+		var uri = URI.create(stringUri);
 		MultiValueMap<String,String> authHeader = getAuthHeader();
-		ResponseEntity<RetrievedProjects> retrievedProjects = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(authHeader), RetrievedProjects.class);
+
+		ResponseEntity<RetrievedProjects> retrievedProjects = restTemplate.exchange(
+		  uri,
+		  HttpMethod.GET,
+		  new HttpEntity<>(authHeader),
+		  RetrievedProjects.class);
 
 		return retrievedProjects.getBody();
 	}
