@@ -1,7 +1,5 @@
 package it.lucafarsetti.memsource.account;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;

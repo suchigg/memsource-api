@@ -13,17 +13,17 @@ import java.net.URI;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/accounts")
-public class RestApiController {
+public class AccountRestController {
 
 	private final AccountService accountService;
 
-	public RestApiController(AccountService accountService) {
+	public AccountRestController(AccountService accountService) {
 		this.accountService = accountService;
 	}
 
 	@GetMapping("/configuration")
 	public ResponseEntity<AccountConfiguration> getConfiguration() {
-		AccountConfiguration accountConfigurationFound = this.accountService.find();
+		AccountConfiguration accountConfigurationFound = this.accountService.find().orElseGet(AccountConfiguration::new);
 		return ResponseEntity.ok(accountConfigurationFound);
 	}
 
