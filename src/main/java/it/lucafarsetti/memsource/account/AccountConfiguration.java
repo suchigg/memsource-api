@@ -1,26 +1,31 @@
 package it.lucafarsetti.memsource.account;
 
-import lombok.Getter;
-
 import javax.validation.constraints.NotEmpty;
 
-@Getter
 public class AccountConfiguration {
 
 	@NotEmpty
-	private final String username;
+	private final String userName;
 
 	@NotEmpty
 	private final String password;
 
 	public AccountConfiguration() {
-		this.username = "";
+		this.userName = "";
 		this.password = "";
 	}
 
-	public AccountConfiguration(String username, String password) {
-		this.username = username;
+	public AccountConfiguration(String userName, String password) {
+		this.userName = userName;
 		this.password = password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 }
