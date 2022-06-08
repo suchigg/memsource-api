@@ -2,7 +2,7 @@ package it.lucafarsetti.memsource.account;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +21,16 @@ public class RestApiController {
 		this.accountService = accountService;
 	}
 
+	@GetMapping("/configuration")
+	public ResponseEntity<AccountConfiguration> getConfiguration() {
+		AccountConfiguration accountConfigurationFound = this.accountService.find();
+		return ResponseEntity.ok(accountConfigurationFound);
+	}
+
 	@PutMapping
-	public ResponseEntity<URI> update(@RequestBody Account account) {
-		Saved savedAccount = this.accountService.save(account);
-		URI location = URI.create("/api/v1/accounts/" + savedAccount.getId().toString());
-		return ResponseEntity.ok(location);
+	public ResponseEntity<URI> update(@RequestBody AccountConfiguration accountConfiguration) {
+		this.accountService.save(accountConfiguration);
+		return ResponseEntity.ok().build();
 	}
 
 }

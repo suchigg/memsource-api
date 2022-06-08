@@ -12,11 +12,17 @@ public class AccountService {
 		this.repository = repository;
 	}
 
-	public Saved save(Account account) {
+	public AccountConfiguration find() {
+		return this.repository.findFirstBy()
+							  .map(accountFound -> new AccountConfiguration(accountFound.getUsername(), accountFound.getPassword()))
+							  .orElseGet(AccountConfiguration::new);
+	}
+
+	public Saved save(AccountConfiguration accountConfiguration) {
 		MemsourceAccount accountToSave = this.repository.findFirstBy().orElseGet(MemsourceAccount::new);
 
-		accountToSave.setUsername(account.getUsername());
-		accountToSave.setPassword(account.getPassword());
+		accountToSave.setUsername(accountConfiguration.getUsername());
+		accountToSave.setPassword(accountConfiguration.getPassword());
 
 		MemsourceAccount savedAccount = this.repository.save(accountToSave);
 		return new Saved(savedAccount.getId());
