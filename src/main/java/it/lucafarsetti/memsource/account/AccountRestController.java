@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @CrossOrigin
@@ -28,7 +29,7 @@ public class AccountRestController {
 	}
 
 	@PutMapping
-	public ResponseEntity<URI> update(@RequestBody AccountConfiguration accountConfiguration) {
+	public ResponseEntity<URI> update(@Valid @RequestBody AccountConfiguration accountConfiguration) {
 		this.accountService.save(accountConfiguration);
 		return ResponseEntity.ok().build();
 	}

@@ -21,7 +21,7 @@ public class Page {
 
 	public int getPageSize() {
 		int size = pageSize == null || pageSize <= 0 ? 50 : pageSize;
-		return Math.min(size, 1000);
+		return Math.min(size, 50);
 	}
 
 }
