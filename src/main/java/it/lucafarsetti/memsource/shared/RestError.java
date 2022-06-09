@@ -1,7 +1,5 @@
 package it.lucafarsetti.memsource.shared;
 
-import java.util.Date;
-
 public class RestError {
 
 	private String exception;

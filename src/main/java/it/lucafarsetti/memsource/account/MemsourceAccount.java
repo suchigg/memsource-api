@@ -1,7 +1,6 @@
 package it.lucafarsetti.memsource.account;
 
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;

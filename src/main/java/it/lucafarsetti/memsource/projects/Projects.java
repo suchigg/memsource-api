@@ -1,7 +1,5 @@
 package it.lucafarsetti.memsource.projects;
 
-import it.lucafarsetti.memsource.client.RetrievedProject;
-
 import java.util.List;
 
 public class Projects {
