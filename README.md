@@ -1,4 +1,4 @@
-# suchigg-memsource-api
+# memsource-api
 Backend API for Memsource developer Assignment
 Front end application, written in angular, must be donwloaded from memsource-ui repository
 
