@@ -27,7 +27,6 @@ public class MemsourceAccount {
 	private UUID id;
 
 	@NotEmpty
-	@NaturalId
 	private String username;
 
 	@NotEmpty

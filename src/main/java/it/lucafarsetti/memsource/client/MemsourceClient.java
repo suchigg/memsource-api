@@ -37,7 +37,7 @@ public class MemsourceClient {
 							 .append(page.getPageSize()).toString();
 
 
-		var uri = URI.create(stringUri);
+		URI uri = URI.create(stringUri);
 		MultiValueMap<String,String> authHeader = getAuthHeader();
 
 		ResponseEntity<RetrievedProjects> retrievedProjects = restTemplate.exchange(
